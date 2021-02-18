@@ -26,6 +26,13 @@ var generatePassword = function() {
   // Ask user how long they would like password to be
   var passwordLength = prompt("How long would you like your password to be?");
   passwordLength = parseInt(passwordLength);
+  if (passwordLength < 8) {
+    alert("Your password must be at least 8 characters. Try again.");
+    generatePassword();
+  } else if (passwordLength > 128) {
+    alert("Your password cannot be longer than 128 characters. Try again.");
+    generatePassword();
+  }
   
   // Ask user if they would like to include numbers
   var numsConfirmation = confirm("Would you like numbers in your password?");
