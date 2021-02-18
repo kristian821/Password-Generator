@@ -2,4 +2,4 @@
 
 Generate a password with this web program
 
-**Use letters and either special characters or numbers**
+You can use lowercase letters, uppercase lettters, special characters, and numbers to make your password
