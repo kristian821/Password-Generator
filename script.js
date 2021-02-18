@@ -1,109 +1,64 @@
 // Assignment code here
+//create arrays of different options
+let letters = Array.from('abcdefghijklmonpqrstuvwxyz');
 
-const letters = Array.from('abcdefghijklmonpqrstuvwkyz');
-var randomLetter = function() {
-  var random = letters[Math.floor(Math.random() * letters.length)];
-  console.log(random);
-  return random;
-};
-const numbers = [1,2,3,4,5,6,7,8,9,0];
-var randomNumber = function() {
-  var random = numbers[Math.floor(Math.random() * numbers.length)];
-  console.log(random);
-  return random;
-};
+let numbers = [1,2,3,4,5,6,7,8,9,0];
 
-const specialChars = ['!', '@', '#', '$', '%', '&', '*', '-'];
-var randomChar = function() {
-  var random = specialChars[Math.floor(Math.random() * specialChars.length)];
-  console.log(random);
-  return random;
-};
+let specialChars = ['!', '@', '#', '$', '%', '&', '*', '-'];
 
-// create a new array for each possiblity for the switch statement to iterate through
-// Change for loop to while loop, and compare password.length and passwordLength
+let charArray = letters.concat(specialChars);
 
-var charArray = letters.concat(specialChars);
-console.log(charArray);
-var numArray = letters.concat(numbers);
-console.log(numArray);
-var allArray = charArray.concat(numbers);
+let numArray = letters.concat(numbers);
 
+let allArray = charArray.concat(numbers);
 
-// Refactor code to reduce lines
+var password = [];
+
 var random = function(Array) {
-  random = Array[Math.floor(Math.random() * Array.length)];
-  random.toString();
-  return random;
-}
-
-
-
-
-password = password.toString();
-
+ var random = Array[Math.floor(Math.random() * Array.length)];
+ password.push(random); 
+};
 
 var generatePassword = function() {
+  //initialize password as an empty array whenever new password is generated
+  password = [];
 
+  // Ask user how long they would like password to be
   var passwordLength = prompt("How long would you like your password to be?");
   passwordLength = parseInt(passwordLength);
   
-
-  var password = [];
-
-  var addToPass = function(toString) {
-    password.push(String);
-  }
+  // Ask user if they would like to include numbers
+  var numsConfirmation = confirm("Would you like numbers in your password?");
   
+  // Ask user if they would like to include special characters
+  var specialConfirmation = confirm("Would you like special characters in you password?");
+ 
+  // iterate through for loop to make password same length as user prompt
+  for (;password.length < passwordLength;) {
 
-  var numsConfirmation = prompt("Would you like numbers in your password?");
-  
+    switch(true) {
 
-  var specialConfirmation = prompt("Would you like special characters in you password?");
-  
-
-  for (i = 0; i < passwordLength; i++) {
-    switch(numsConfirmation, specialConfirmation) {
-      case (true, true):
+      case(numsConfirmation && specialConfirmation):
         random(allArray);
-        addToPass(random);
-        return password;
+        break;
 
-      case (true, false):
+      case(numsConfirmation && !specialConfirmation):
         random(numArray);
-        addToPass(random);
-        return password;
-      
-      case (false, true):
+        break;
+
+      case(!numsConfirmation && specialConfirmation):
         random(charArray);
-        addToPass(random);
-        return password;
+        break;
 
       default:
         random(letters);
-        addToPass(random);
-        return password;
+        break;
     }
-
-  //  Repalce with a switch statement
-  //   if (specialConfirmation && numsConfirmation){
-  //     words();
-  //     nums();
-  //     special();
-      
-  //   } else if (specialConfirmation) {
-  //     words();
-  //     special();
-  //   } else if (numsConfirmation) {
-  //     words();
-  //     nums();
-  //   } else {
-  //     words();
-  //   }    
   }
 
+  // Turn password array into  a string
   password = password.join('');
-  console.log(password);
+  password = password.toString();
   return password;
 };
 
@@ -112,6 +67,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  password = [];
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
