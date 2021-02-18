@@ -20,6 +20,24 @@ var randomChar = function() {
   return random;
 };
 
+// create a new array for each possiblity for the switch statement to iterate through
+// Change for loop to while loop, and compare password.length and passwordLength
+
+var charArray = letters.concat(specialChars);
+console.log(charArray);
+var numArray = letters.concat(numbers);
+console.log(numArray);
+var allArray = charArray.concat(numbers);
+
+
+// Refactor code to reduce lines
+var random = function(Array) {
+  random = Array[Math.floor(Math.random() * Array.length)];
+  random.toString();
+  return random;
+}
+
+
 
 
 password = password.toString();
@@ -28,42 +46,60 @@ password = password.toString();
 var generatePassword = function() {
 
   var passwordLength = prompt("How long would you like your password to be?");
- 
   passwordLength = parseInt(passwordLength);
-  var words = function() {
-    password.push(randomLetter());
-  }
+  
 
   var password = [];
-  var words = function() {
-    password.push(randomLetter());
+
+  var addToPass = function(toString) {
+    password.push(String);
   }
+  
 
   var numsConfirmation = prompt("Would you like numbers in your password?");
-  var nums = function() {
-    password.push(randomNumber());
-  };
+  
 
   var specialConfirmation = prompt("Would you like special characters in you password?");
-  var special = function() {
-    password.push(randomChar());
-  }
+  
 
   for (i = 0; i < passwordLength; i++) {
-    if (specialConfirmation && numsConfirmation){
-      words();
-      nums();
-      special();
+    switch(numsConfirmation, specialConfirmation) {
+      case (true, true):
+        random(allArray);
+        addToPass(random);
+        return password;
+
+      case (true, false):
+        random(numArray);
+        addToPass(random);
+        return password;
       
-    } else if (specialConfirmation) {
-      words();
-      special();
-    } else if (numsConfirmation) {
-      words();
-      nums();
-    } else {
-      words();
-    }    
+      case (false, true):
+        random(charArray);
+        addToPass(random);
+        return password;
+
+      default:
+        random(letters);
+        addToPass(random);
+        return password;
+    }
+
+  //  Repalce with a switch statement
+  //   if (specialConfirmation && numsConfirmation){
+  //     words();
+  //     nums();
+  //     special();
+      
+  //   } else if (specialConfirmation) {
+  //     words();
+  //     special();
+  //   } else if (numsConfirmation) {
+  //     words();
+  //     nums();
+  //   } else {
+  //     words();
+  //   }    
   }
 
   password = password.join('');
