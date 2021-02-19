@@ -39,34 +39,30 @@ var generatePassword = function() {
 
     if (typeConfirm === true) {
       passwordArray = passwordArray.concat(lettersLower);
-      password.join('');
     }
 
   var upperConfirm = confirm("Would you like uppercase letters?");
 
     if (upperConfirm === true) {
       passwordArray = passwordArray.concat(lettersUpper);
-      password.join('');
     }
   
   var numsConfirmation = confirm("Would you like numbers?");
 
     if (numsConfirmation === true) {
       passwordArray = passwordArray.concat(numbers); 
-      password.join('');
     }
   
   var specialConfirmation = confirm("Would you like special characters?");
 
     if (specialConfirmation === true) {
       passwordArray = passwordArray.concat(specialChars);
-      password.join('');
     }
 
     if (passwordArray.length === 0) {
       alert("You must pick an option. Please try again.")
-      passwordArray = [];
-      console.log(passwordArray);
+      passwordArray = [null];
+
       generatePassword();
   } else {
  
@@ -74,7 +70,7 @@ var generatePassword = function() {
       random(passwordArray);
   }
 
-  
+  password = password.join('');
   password = password.toString();
   return password;
 }
